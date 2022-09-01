@@ -799,26 +799,13 @@ elif nom_check and st.button('Compute'):
     plt.gca().set_yticklabels(['{:,.0f}'.format(x) for x in current_values])
     st.pyplot(fig)
 
-    # TESTINGGGGGGGGGGGGGGGGGG
     # Organizes percentiles into one combined dataframe to be able to download as CSV
     if spending_plan_2 is '':
         output = pd.concat([percentiles_real_1, percentiles_real_spend_1, percentiles_nominal_1, percentiles_nom_spend_1], axis=1)
-        # EXPERIMENT
-        output2 = output.iloc[::20]
-        index_labels=['r1','r2','r3','r4']
-        output2 = pd.DataFrame(output2,index=index_labels)
-        st.dataframe(output2)
-        #output2 = pd.DataFrame(output2, index = ['0 years', '5 years', '10 years'])
-
-        # EXPERIMENT END
     elif spending_plan_3 is '':
         output = pd.concat([percentiles_real_1, percentiles_real_spend_1, percentiles_real_2, percentiles_real_spend_2, percentiles_nominal_1, percentiles_nom_spend_1, percentiles_nominal_2, percentiles_nom_spend_2], axis=1)
     else:
         output = pd.concat([percentiles_real_1, percentiles_real_spend_1, percentiles_real_2, percentiles_real_spend_2, percentiles_real_3, percentiles_real_spend_3, percentiles_nominal_1, percentiles_nom_spend_1, percentiles_nominal_2, percentiles_nom_spend_2, percentiles_nominal_3, percentiles_nom_spend_3], axis=1)
-    #EXPIREMNT
-    st.table(output2)
-    #EXPERIMENT END
-
 
     output_input = pd.concat([input_data, output], join = 'outer')
     # Function to download output as CSV
